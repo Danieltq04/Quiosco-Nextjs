@@ -2,6 +2,7 @@
 
 import { useStore } from '@/src/store'
 import React from 'react'
+import ProductDetails from './ProductDetails'
 
 export default function OrderSumary() {
   const order = useStore((state)=> state.order)
@@ -13,7 +14,12 @@ export default function OrderSumary() {
         El carrito está vacío
       </p> : (
         <div className="mt-5">
-          <p>Si hay algo</p>
+          { order.map((item)=> (
+              <ProductDetails
+                key={item.id}
+                item={item}
+              />
+          ))}
         </div>
       ) }
     </aside>
